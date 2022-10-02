@@ -1,0 +1,58 @@
+{% extends "index.html" %}
+{% block title %}About{% endblock %}
+{% block content %}
+<script>
+	document.querySelector("#navbarSupportedContent > ul > li:nth-child(2)").remove()
+    document.querySelector("#navbarSupportedContent > ul > li:nth-child(2)").remove()
+    document.querySelector("#navbarSupportedContent > ul > li:nth-child(2)").remove()
+    document.querySelector("#navbarSupportedContent > ul > li:nth-child(2)").remove()
+    document.querySelector("#navbarSupportedContent > ul > li:nth-child(2)").remove()
+	</script>
+<header id="home" class="header">
+    <div class="overlay"></div>
+
+    <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">  
+        <div class="container">
+         
+                <div class="row">
+                    <div class="col-xl-6 tm-contact-col-l mb-4">
+                            <div class="form-group">
+                                <label type="text" name="name" class="infos container mb-4 mb-md-2">Alejo Engel, 23 años.</label>
+                            </div>
+                            <div class="form-group">
+                                <textarea rows="8" style="background:transparent;border: 0px;resize: none;" name="message" class="infos container mb-4 mb-md-2" readonly>Supervirsor en Telecentro.
+Estudio en CoderHouse.
+Me gusta tocar la batería y jugar videojuegos.</textarea>
+                            </div>
+
+                    </div>
+                    <div class="col-xl-6 tm-contact-col-r">
+                        <!-- Map -->
+                        <div class="mapouter mb-4">
+                            <div class="gmap_canvas">
+                                <iframe width="100%" height="520" id="gmap_canvas"
+                                src="https://maps.google.com/maps?q=Villa%20Ortuzar&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                                style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+
+                        </div>
+    
+                        <!-- Address -->
+                        <address class="subtitle font-weight-normal" style="color:gray;">
+                            Villa Ortuzar, Buenos Aires<br>
+                            Argentina
+                        </address>
+    
+
+                    </div>
+                </div>
+            </div>
+        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+{% endblock %}

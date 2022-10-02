@@ -1,0 +1,133 @@
+{% extends "index.html" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+{% load static %}
+
+
+<header id="home" class="header">
+    <div class="overlay"></div>
+
+    <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">  
+        <div class="container">
+            <h1 class="carousel-title" style="color:rgb(255, 255, 255)">Bienvenido a Vader Blog...</h1>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h1 class="carousel-title">Aquí encontraras<br> los mejores blogs</h1>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h1 class="carousel-title">Registrate para<br> poder subir tus blogs</h1>
+                      </div>
+                </div>
+            </div>
+        </div>        
+    </div>
+
+</header>
+
+
+{% if request.user.is_authenticated %}
+<section class="section" id="agregar">
+    {% include 'agregar.html' %}
+</section>
+{% endif %}
+
+<section class="section" id="blog" style="min-height: 500px;">
+    <div class="container">
+        <h3 class="section-title">Blogs actuales</h3>
+
+        <div id="owl-testmonial" class="owl-carousel owl-theme mt-4">
+            {% for item in bobjects %}
+            <div class="item">
+                <div class="textmonial-item">
+                    <img src="{{ item.imagen.url }} " class="avatar" alt="{{ item.titulo }}">
+                    <div class="des">
+                        <p>{{ item.texto_corto }}</p>
+
+                        <div class="line"></div>
+                        <a href="{% url 'perfil' item.autor %}"><h6 class="name">{{ item.autor }}</h6></a>
+                        <h6 class="xs-font">{{ item.fecha }}</h6>
+                        <a href="{% url 'single_view' item.id %}" class="btn btn-primary btn-rounded">Leer más</a>
+                        {% if user.is_authenticated %}
+                            {% if user.get_username == item.autor %}
+                            <a href="{% url 'edit_blog' item.id %}" class="btn btn-secondary btn-rounded">Editar</a>
+                            <a href="{% url 'delete_blog' item.id %}" class="btn btn-danger btn-rounded">Borrar</a>
+                            {% endif %}    
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="item">
+                <div class="textmonial-item">
+                    <div class="des">
+                        <p>No hay blogs todavia.</p> 
+
+                        <div class="line"></div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+
+<section id="about" class="section pb-0">
+
+    <div class="container">
+                <div class="row align-items-center mr-auto">
+                    <div class="col-md-4">
+                        <h3 class="section-title">Acerca de mí</h3>
+                        <p>Estudie Python en Coderhouse.</p>
+        
+                        <a href="{% url 'about' %}" style="font-weight: bold;"><u>Saber más...</u></a>
+                    </div>
+                    <div class="col-sm-6 col-md-4 ml-auto">
+                        <div class="widget">
+                            <div class="icon-wrapper">
+                                <i class="ti-calendar"></i>
+                            </div>
+                            <div class="infos-wrapper">
+                                <h4 class="text-primary">13</h4>
+                                <p>Semanas de duración del curso.</p>
+                            </div>
+                        </div>
+                        <div class="widget">
+                            <div class="icon-wrapper">
+                                <i class="ti-face-smile"></i>
+                            </div>
+                            <div class="infos-wrapper">
+                                <h4 class="text-primary">25</h4>
+                                <p>Clases</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                        <div class="widget">
+                            <div class="icon-wrapper">
+                                <i class="ti-star"></i>
+                            </div>
+                            <div class="infos-wrapper">
+                                <h4 class="text-primary">+50</h4>
+                                <p>Horas empleadas en este curso</p>
+                            </div>
+                        </div>
+                        <div class="widget">
+                            <div class="icon-wrapper">
+                                <i class="ti-user"></i>
+                            </div>
+                            <div class="infos-wrapper">
+                                <h4 class="text-primary">1</h4>
+                                <p>Personas a cargo de este proyecto</p>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+    </div>
+</section>
+
+{% endblock %}
